@@ -75,10 +75,11 @@ elif [[ $OS == "Msys" || $OS == "Cygwin" ]] ; then
 
 elif [[ $OS == "Darwin" ]] ; then
 
+  sdk=$(xcrun -sdk macosx --show-sdk-path)
   export PATH=/opt/local/libexec/gnubin/:/opt/local/bin:$PATH
-  export CC="gcc -arch i386 -mmacosx-version-min=10.5"
-  export CXX="g++ -arch i386 -mmacosx-version-min=10.5"
-  OUTPUT_TAG=i386-apple-darwin11
+  export CC="gcc-8 -isysroot $sdk"
+  export CXX="g++-8 -isysroot $sdk"
+  OUTPUT_TAG=x86_64-apple-darwin11
 
 else
 
